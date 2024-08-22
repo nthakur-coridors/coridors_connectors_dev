@@ -1,0 +1,6 @@
+snowflake.local.yml
+output/
+**/__pycache__/
+**/.pytest_cache/
+# *_test*
+

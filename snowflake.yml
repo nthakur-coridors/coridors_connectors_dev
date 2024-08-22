@@ -1,0 +1,29 @@
+# This is a project definition file, a required component if you intend to use Snowflake CLI in a project directory such as this template.
+
+
+definition_version: 1
+native_app:
+  name: coridors_connectors
+  source_stage: app_src.stage
+  artifacts:
+    - src: app/*
+      dest: ./
+    - src: src/python/add.py
+      dest: python/add.py
+    - src: src/module-api/src/salesforce.py
+      dest: module-api/salesforce.py
+    - src: src/ui/src/*
+      dest: streamlit/
+
+  package:
+    name: coridors_connectors_pkg
+  application:
+    name: coridors_connectors
+    debug: false 
+
+# If you added any sql scripts under scripts/, you should add the following snippet after `artifacts` under `native_app`.     
+#  package:
+#    scripts:
+#    - scripts/any-provider-setup.sql
+#    - scripts/shared-content.sql
+

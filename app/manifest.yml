@@ -1,0 +1,59 @@
+# For more information on creating manifest, go to https://docs.snowflake.com/en/developer-guide/native-apps/creating-manifest
+manifest_version: 1
+
+version:
+  name: Dev
+  label: "Dev Version"
+  comment: "Default version used for development. Override for actual deployment."
+
+artifacts:
+  setup_script: setup_script.sql
+  readme: README.md
+  default_streamlit: core.ui
+  extension_code: true 
+
+privileges:
+  - EXECUTE TASK:
+      description: "Run ingestion tasks for replicating Redshift data"
+  - EXECUTE MANAGED TASK:
+      description: "To run serverless ingestion tasks for replicating Redshift data"
+  - CREATE WAREHOUSE:
+      description: "To create warehouses for executing tasks"
+  - MANAGE WAREHOUSES:
+      description: "To manage warehouses for optimizing the efficiency of your accounts"
+  - CREATE DATABASE:
+      description: "To create sink databases for replicating Redshift data"
+  - IMPORTED PRIVILEGES ON SNOWFLAKE DB:
+      description: "To access account_usage views"
+  - READ SESSION:
+      description: "To allow Streamlit to access some context functions"
+
+references:
+  - table_reference:
+      label: "Table Reference"
+      description: "A table in the consumer account that exists outside the APPLICATION object."
+      privileges:
+        - INSERT
+      object_type: TABLE
+      multi_valued: false
+      register_callback: config.register_single_reference
+  
+  
+  - procedure_reference:
+      label: "Procedure Reference"
+      description: "A procedure in the consumer account that exists outside the APPLICATION object."
+      privileges:
+        - USAGE
+      object_type: PROCEDURE
+      multi_valued: false
+      register_callback: config.register_single_reference
+
+
+  - external_access_reference:
+      label: "Coincap Access Integration"
+      description: "This EAI is required to access the login.salesforce.com URL"
+      privileges:
+        - USAGE
+      object_type: EXTERNAL ACCESS INTEGRATION
+      register_callback: config.register_single_reference
+      configuration_callback: core.get_configuration
