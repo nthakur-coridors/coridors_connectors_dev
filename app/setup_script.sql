@@ -105,7 +105,7 @@ GRANT USAGE ON PROCEDURE core.create_eai_objects() TO APPLICATION ROLE app_publi
 
 CREATE STREAMLIT core.ui
      FROM '/streamlit/'
-     MAIN_FILE ='ui_test1.1.py';
+     MAIN_FILE = 'Home.py';
 
 -- Grant appropriate privileges over these objects to your application roles. 
 GRANT USAGE ON STREAMLIT core.ui TO APPLICATION ROLE app_public;

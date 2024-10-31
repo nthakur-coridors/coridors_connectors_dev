@@ -4,6 +4,7 @@
 channels:
 - snowflake
 dependencies:
-- streamlit=1.26.0
+- streamlit=1.35.0
 - streamlit-extras
 - snowflake-native-apps-permission
+- pillow

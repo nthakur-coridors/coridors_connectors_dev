@@ -8,6 +8,8 @@ import streamlit as st
 import snowflake.permissions as permission
 from snowflake.snowpark.functions import call_udf, col, lit
 from snowflake.snowpark import Session
+from streamlit_extras.stylable_container import stylable_container
+
 
 session = Session.builder.getOrCreate()
 
@@ -74,15 +76,26 @@ def run_streamlit():
    # import streamlit as st
 
    # Sidebar
-   st.sidebar.image("https://via.placeholder.com/150", width=100)  # Placeholder for logo
-   st.sidebar.title("Coridors Connector")
-   st.sidebar.button("Create Ingestion")
-   st.sidebar.write("---")
-   st.sidebar.write("Help & Support")
-   st.sidebar.write("Settings")
+   # st.sidebar.image("https://via.placeholder.com/150", width=100)  # Placeholder for logo
+   # st.sidebar.title("Coridors Connector")
+   # st.sidebar.button("Create Ingestion")
+   # st.sidebar.write("---")
+   # st.sidebar.write("Help & Support")
+   # st.sidebar.write("Settings")
+
+   with st.sidebar:
+    # st.button("normal button")
+    # st.logo("./logo.png")
+    # sidebar_header()
+    # st.header("Coridors Connector")
+    # sidebar_components()q
+    sidebar_components()
+
+   
 
    # Main Page
    st.title("Welcome to Coridors Connector")
+   st.write("[OpenAI](https://www.openai.com)")
    st.write(
       """
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec neque eleifend, 
@@ -102,11 +115,11 @@ def run_streamlit():
 
    # Get Started
    st.subheader("Let's Get Started!")
-   st.button("Create New Ingestion")
+   st.button("Create New Ingestion",type="primary" )
 
    # Tutorials Section
    st.subheader("Tutorials")
-   st.markdown("[YouTube Video Tutorial](#)")
+   st.markdown("[YouTube Video Tutorial](https://app.snowflake.com/mlpadyh/gj36557/worksheets)")
    st.markdown("[Quick Guide to Connector](#)")
    st.markdown("[Documentation](#)")
    st.markdown("[Walkthrough](#)")
@@ -135,7 +148,52 @@ def run_streamlit():
       turpis convallis, non vestibulum felis euismod.
       """
    )
-
+def sidebar_components():
+    l,m,r = st.columns([0.7,1,1])
+    with m:
+        with stylable_container(
+            key="st_side_main_logo",
+            css_styles="""
+                img {
+                    display: flex;
+                    position: static;
+                    width: 128px;
+                    height: 128px;
+                    flex-shrink: 0;
+                }
+                """
+        ):
+            st.image("./resources/logo.svg", width=120)
+    # st.image("./logo.png", width=120)
+    l,m,r = st.columns([0.2,1,1])
+    with m:     
+        with stylable_container(
+            key="btn_create_ingestion",
+            css_styles="""
+                div.stButton > button {
+                    display: inherit;
+                    position: inherit;
+                    background-color: red;
+                    color: white;
+                    border-radius: 5px;
+                    display: flex;
+                    width: 224px;
+                    height: 48px;
+                    padding: 10px;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 16px;
+                    flex-shrink: 0;
+                    # position: relative;
+                    # left: -50px 
+                }
+                # div.stButton > button:hover {
+                #     background-color: darkblue;
+                #     color: white;
+                # }
+                """,
+        ):
+            m.button("Create Ingestion", type="primary")
 
 if __name__ == '__main__':
    if 'privileges_granted' not in st.session_state:

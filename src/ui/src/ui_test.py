@@ -1,5 +1,5 @@
 import streamlit as st
-import streamlit_extras.stylable_container as  stylable_container
+from streamlit_extras.stylable_container import stylable_container
 
 # Sidebar
 # Add logo to the sidebar
@@ -26,90 +26,123 @@ def sidebar_componects():
     unsafe_allow_html=True
     )
     # m.button("Create Ingestion")
-    m.image("logo.png", width=120)
+    m.image("resources\Logo.png", width=120)
 
-    with stylable_container(
-        key="green_button",
-        css_styles="""
-            button {
-                background-color: green;
-                color: white;
-                border-radius: 20px;
-            }
-            """,
-    ):
-        st.button("Green button")
+    l,m,r = st.columns([0.1,1,0.1])
+    with m:
+        with stylable_container(
+            key="green_button",
+            css_styles="""
+                div[data-testid="stButton"] button {
+                    display: flex;
+                    background: green;
+                    color: white;  
+                    width: 224px; 
+                    border-radius: 5px; 
+                    height: 48px; 
+                    padding: 10px; 
+                    justify-content: center; 
+                    align-items: center; 
+                    font-family: sans-serif; 
+                    font-size: 12px; 
+                    font-style: normal; 
+                    font-weight: 600; 
+                    line-height: 24px;
+
+                }
+                div[data-testid="stButton"] button:hover {
+                    # background: darkblue;
+                    color: white;
+                }
+                """,
+        ):
+            st.button("Green button")
+
+    
 
     st.button("Normal button")
-
+# def main_componenet():
+#     l,m,r = st.columns([1,1,1])
+#     with l:
+#         with stylable_container(
+#             key="btn",
+#             css_styles="""
+#                 button {
+#                     background-color: blue;
+#                     color: white;
+#                     border-radius: 20px;
+#                 }
+#                 """,
+#         ):
+#             st.button("btn")
 with st.sidebar:
     sidebar_componects()
 
 st.sidebar.header("Coridors Connector")
+# # with st.sidebar:
+# #     st.markdown(
+# #         """
+# #         <div style="text-align: center;">
+# #             <img src="https://via.placeholder.com/150" alt="Logo" width="150">
+# #         </div>
+# #         """,
+# #         unsafe_allow_html=True
+# #     )
+
 # with st.sidebar:
-#     st.markdown(
-#         """
-#         <div style="text-align: center;">
-#             <img src="https://via.placeholder.com/150" alt="Logo" width="150">
-#         </div>
-#         """,
-#         unsafe_allow_html=True
-#     )
-
-with st.sidebar:
     
-    l,m,r = st.columns([1,1,1])
-    m.markdown(
-    """
-    <style>
-    display: flex;
-    width: 128px;
-    height: 128px;
-    justify-content: center;
-    align-items: center;
-    flex-shrink: 0;
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-    # m.button("Create Ingestion")
-    m.image("logo.png", width=120)  # Placeholder for logo
-# Main content
+#     l,m,r = st.columns([1,1,1])
+#     m.markdown(
+#     """
+#     <style>
+#     display: flex;
+#     width: 128px;
+#     height: 128px;
+#     justify-content: center;
+#     align-items: center;
+#     flex-shrink: 0;
+#     </style>
+#     """,
+#     unsafe_allow_html=True
+# )
+#     # m.button("Create Ingestion")
+#     # m.image("coridors-connectors/src/ui/src/resources/Logo.png", width=120)  # Placeholder for logo
+# # Main content
 
 
-with st.sidebar:
+# with st.sidebar:
     
-    l,m,r = st.columns([0.3,1,1])
-    m.markdown(
-    """
-    <style>
-    div.stButton > button {
-    display: flex;
-    width: 224px;
-    height: 48px;
-    padding: 0px;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    flex-shrink: 0;
-    color: red;
+#     l,m,r = st.columns([0.3,1,1])
+#     m.markdown(
+#     """
+#     <style>
+#     div.stButton > button {
+#     display: flex;
+#     width: 224px;
+#     height: 48px;
+#     padding: 0px;
+#     justify-content: center;
+#     align-items: center;
+#     gap: 16px;
+#     flex-shrink: 0;
+#     color: red;
 
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-    # with stylable_container(
-    #     key="green_button",
-    #     css_styles="""
-    #         button {
-    #             background-color: green;
-    #             color: white;
-    #             border-radius: 20px;
-    #         }
-    #         """,
-    # ):
-    st.button("Green button")
+#     }
+#     </style>
+#     """,
+#     unsafe_allow_html=True
+# )
+#     # with stylable_container(
+#     #     key="green_button",
+#     #     css_styles="""
+#     #         button {
+#     #             background-color: green;
+#     #             color: white;
+#     #             border-radius: 20px;
+#     #         }
+#     #         """,
+#     # ):
+#     st.button("Green button")
 # l,m,r = st.columns([1,3,1])
 #     m.markdown(
 #         """
@@ -140,25 +173,39 @@ with st.sidebar:
 
     # m.button(":blue-background[Create Ingestion]")
 # st.sidebar.button("Create Ingestion")
-with st.sidebar:
-    st.markdown(
-        """
-        <div style="width: 100%; height: 100%; padding: 10px; background: #0062F6; border-radius: 10px; overflow: hidden; justify-content: center; align-items: center; gap: 16px; display: inline-flex">
-        <div style="color: green; font-size: 18px; font-family: Source Sans Pro; font-weight: 600; line-height: 24px; word-wrap: break-word">Create Ingestion</div>
-        </div>
+# with st.sidebar:
+#     st.markdown(
+#         """
+#         <div style="width: 100%; height: 100%; padding: 10px; background: #0062F6; border-radius: 10px; overflow: hidden; justify-content: center; align-items: center; gap: 16px; display: inline-flex">
+#         <div style="color: green; font-size: 18px; font-family: Source Sans Pro; font-weight: 600; line-height: 24px; word-wrap: break-word">Create Ingestion</div>
+#         </div>
 
-    """,
-    unsafe_allow_html=True 
-    )
-    st.button("Create Ingestion2")
+#     """,
+#     unsafe_allow_html=True 
+#     )
+#     st.button("Create Ingestion2")
 
-st.sidebar.write("---")
-st.sidebar.write("Help & Support")
-st.sidebar.write("Settings")
-st.logo('logo.png')
+# st.sidebar.write("---")
+# st.sidebar.write("Help & Support")
+# st.sidebar.write("Settings")
+# st.logo('logo.png')
 
 # Main Page
 st.title("Welcome to Coridors Connector")
+l,m,r = st.columns([1,1,1])
+with l:
+    with stylable_container(
+        key="btn",
+        css_styles="""
+            button {
+                background-color: blue;
+                color: white;
+                border-radius: 10px;
+                width: 70%;
+            }
+            """,
+    ):
+            st.button("btn")
 st.write(
     """
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec neque eleifend, 
@@ -170,45 +217,45 @@ st.write(
     """
 )
 
-def example():
-    with stylable_container(
-        key="green_button",
-        css_styles="""
-            button {
-                background-color: green;
-                color: white;
-                border-radius: 20px;
-            }
-            """,
-    ):
-        st.button("Green button")
+# def example():
+#     with stylable_container(
+#         key="green_button",
+#         css_styles="""
+#             button {
+#                 background-color: green;
+#                 color: white;
+#                 border-radius: 20px;
+#             }
+#             """,
+#     ):
+#         st.button("Green button")
 
-    st.button("Normal button")
+#     st.button("Normal button")
 
-    with stylable_container(
-        key="container_with_border",
-        css_styles="""
-            {
-                border: 1px solid rgba(49, 51, 63, 0.2);
-                border-radius: 0.5rem;
-                padding: calc(1em - 1px)
-            }
-            """,
-    ):
-        st.markdown("This is a container with a border.")
+#     with stylable_container(
+#         key="container_with_border",
+#         css_styles="""
+#             {
+#                 border: 1px solid rgba(49, 51, 63, 0.2);
+#                 border-radius: 0.5rem;
+#                 padding: calc(1em - 1px)
+#             }
+#             """,
+#     ):
+#         st.markdown("This is a container with a border.")
 
-# Supported Connectors
-st.markdown(
-    """
-    <style>
-    div.stButton > button {
-        background-color: #ADD8E6;
-        color: black;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+# # Supported Connectors
+# st.markdown(
+#     """
+#     <style>
+#     div.stButton > button {
+#         background-color: #ADD8E6;
+#         color: black;
+#     }
+#     </style>
+#     """,
+#     unsafe_allow_html=True,
+# )
 
 # Use a container to wrap the content
 with st.container():
